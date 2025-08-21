@@ -58,6 +58,29 @@ def load_machines_from_csv(csv_path: str) -> Dict[str, Machine]:
 
 
 def main() -> None:
+     """
+    Main entry point for the factory monitoring application.
+    
+    This function serves as the primary entry point when the script is run
+    directly. It loads machine data from a CSV file (defaulting to "data.csv"
+    if no command line argument is provided), creates a FactoryMonitor instance,
+    and initiates health monitoring for all machines.
+    
+    Command Line Usage:
+        python main.py [csv_file_path]
+        
+    Args:
+        None (reads from sys.argv for optional CSV file path)
+        
+    Returns:
+        None
+        
+    Example:
+        >>> # Run with default data.csv
+        >>> main()
+        >>> # Run with custom CSV file
+        >>> # python main.py custom_data.csv
+    """
     csv_path = sys.argv[1] if len(sys.argv) > 1 else "data.csv"
     machines = load_machines_from_csv(csv_path)
     monitor = FactoryMonitor(machines.values())
@@ -66,4 +89,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
